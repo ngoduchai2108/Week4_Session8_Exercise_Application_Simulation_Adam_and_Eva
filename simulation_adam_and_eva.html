@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Simulation Adam and Eva</title>
+</head>
+<body>
+<script>
+    let Apple = function () {
+        this.weight = 10;
+        this.setName = function (apple) {
+            this.name = apple;
+        };
+        this.getName = function () {
+            return this.name;
+        };
+        this.getWeight = function () {
+            return this.weight;
+        }
+    };
+    
+    let Human = function () {
+         this.setGender = function (gender) {
+            this.gender = gender;
+        };
+        this.isMale = function () {
+            return this.gender  ;
+        };
+        this.setName = function (name) {
+            this.name = name;
+        };
+        this.getName = function () {
+            return this.name;
+        };
+        this.setWeight = function (weight) {
+            this.weight = weight;
+        };
+        this.getWeight = function () {
+            return this.weight;
+        };
+        this.setApple = function (apple) {
+            this.apple = apple;
+        };
+        this.checkApple = function () {
+            return this.apple.weight;
+        };
+        this.eat = function () {
+            return this.apple.weight -= Math.floor(Math.random()*2)+1;
+        };
+        this.say = function (name) {
+            return alert(name+ ' eat !!!');
+        }
+    };
+
+let apple = new Apple();
+apple.setName("Apple1");
+let adam = new Human();
+adam.setName("Adam");
+adam.setGender("male");
+adam.setWeight(70);
+adam.setApple(apple);
+
+let eva = new Human();
+eva.setName("Eva");
+eva.setGender("female");
+eva.setWeight(50);
+eva.setApple(apple);
+
+document.write('Apple info: '+'<br/>' +apple.getName()+': ');
+document.write(apple.getWeight()+'<br/>'+'<br/>');
+
+document.write('Human 1 Info: '+'<br/>'+adam.getName()+ ': ');
+document.write(adam.isMale()+' , ');
+document.write(adam.getWeight()+'<br/>'+'<br/>');
+
+document.write('Human 1 Info: '+'<br/>'+eva.getName()+ ': ');
+document.write(eva.isMale()+' , ');
+document.write(eva.getWeight()+'<br/>'+'<br/>');
+
+
+
+
+
+while (apple.weight >0){
+    adam.say(eva.getName());
+    eva.eat(apple);
+    document.write('Apple Info: '+ eva.checkApple()+"<br/>");
+    eva.say(adam.getName());
+    adam.eat(apple);
+    document.write('Apple Info: '+ adam.checkApple()+"<br/>");
+    while (apple.weight <3){
+        adam.say(eva.getName());
+        eva.eat(apple);
+        document.write('Apple Info: '+ eva.checkApple()+"<br/>");
+        if (eva.checkApple() ===0){
+            apple.weight = 0;
+            break;
+        }
+        eva.say(adam.getName());
+        adam.eat(apple);
+        document.write('Apple Info: '+ adam.checkApple()+"<br/>");
+        if (adam.checkApple() ===0){
+            apple.weight = 0;
+            break;
+        }
+    }
+    if (apple.weight ===0){
+        break;
+    }
+}
+</script>
+</body>
+</html>
